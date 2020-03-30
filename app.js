@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const flash = require('flash');
 const path = require("path");
-var session = require('express-session');
+const session = require('express-session');
+const routeStudy = require('./routes/study');
 const app = express();
 
 app.use(session({
@@ -38,6 +39,8 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
     res.render('index', /*{date: Date.now}*/);
 });
+
+app.use('/study', routeStudy);
 
 const port = 4002;
 app.listen(port, () => {
