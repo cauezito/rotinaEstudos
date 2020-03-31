@@ -2,10 +2,12 @@ const express = require('express');
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const flash = require('flash');
+const flash = require("connect-flash");
 const path = require("path");
 const session = require('express-session');
 const routeStudy = require('./routes/study');
+require('./models/Study')
+const Study = mongoose.model("study");
 const app = express();
 
 app.use(session({
@@ -37,7 +39,11 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-    res.render('index', /*{date: Date.now}*/);
+    Study.find().lean().then((studies) => {
+        res.render('index', /*{date: Date.now}*/ {studies: studies})
+    }).catch((err) => {
+        req.flash("error", "Houve um erro ao carregar os tópicos de estudo.")
+    })    
 });
 
 app.use('/study', routeStudy);

@@ -2,13 +2,31 @@
 <div class="alert alert-danger">{{text}}</div>
 {{/each}}
 <h1 class="display-4 text-center">
-Hoje é dia 30 de março. O que estudaremos?</h1>
-<form action="/study/" method="post">
-    <div class="input-group mt-4">
-    <input type="text" class="form-control" placeholder="Insira o título do conteúdo" 
-    aria-label="title" name="title">
-    <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="submit">É isso!</button>
-    </div>
-    </div>
-</form>
+Hoje é dia 30 de março. O que faremos?</h1>
+<div class="options mt-5 mb-5">
+    <a href="">
+        <button type="button" class="btn btn-info btn-lg">Continuar estudo</button>
+    </a>
+    <a href="/study/">
+        <button type="button" class="btn btn-dark btn-lg">Novo estudo</button>
+    </a>
+</div>
+
+<div class="row">
+{{#each studies}}
+<div class="col-sm-6 col-md-4 mb-3">
+<div class="card" style="">
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{category}}</h6>
+    <p class="card-text">{{desc}}</p>
+    <a href="/study/readMore/{{_id}}" class="card-link">Continuar estudo</a>
+    <a href="#" class="card-link">Apagar</a>
+  </div>
+</div>
+</div>
+{{/each}}
+
+</div>
+
+

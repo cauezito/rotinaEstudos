@@ -14,10 +14,10 @@ const Study = new Schema({
         type: String,
         required: true
     },
-    extra: {
+    category: {
         type: String,
-        required: false
-    },
+        required: true
+    }, 
     date: {
         type: Date,
         default: Date.now()
