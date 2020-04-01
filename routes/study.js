@@ -28,75 +28,49 @@ router.get('/delete/:id', (req, res) => {
     })
 });
 
-router.get('/edit/:id/', (req, res) => {
-    Study.findOne({_id: req.params.id}).lean().then((study) => {
-            res.render('study/edit' , {study: study});
-        }).catch((err) => {
-            req.flash('error', 'Não será possível atualizar o tópico');
-        })
-});
-
-router.post('/edit/:id/', (req, res) => {
-    Study.findOne({_id: req.params.id}).then((study) => {
-        study.title = req.body.title.value;
-        study.desc = req.body.subtitle.value;
-        study.content = req.body.content.value;
-        study.save().then(() => {
-            req.flash('success', 'O tópico foi atualizado!');
-            res.redirect('/');
-        }).catch((err) => {
-            req.flash('error', 'Não foi possível atualizar o tópico');
-        })
-    }).catch((err) => {
-        req.flash('error', 'Não foi possível atualizar o tópico');
-        res.redirect('/');
-    })
-});
-
-router.post('/validate/:flag', (req, res) => {
+function validate(study){
     var errors = [];
 
-    if(!req.body.title || typeof req.body.title == undefined || req.body.title == null){
+    if(!study.title || typeof study.title == undefined || study.title == null){
         errors.push({text: "Você precisa definir um título!"});
-    } else if(req.body.title.length < 8){
+    } else if(study.title.length < 8){
         errors.push({text: "Escreva um título mais detalhado. Você consegue!"})
     }
 
-    if(req.body.description){
-        if(req.body.description.length < 10){
+    if(study.description){
+        if(study.description.length < 10){
             errors.push({text: "Capriche na descrição! Ela está muito curta."});
         }        
     } 
 
-    if(!req.body.category || typeof req.body.category == undefined ||
-        req.body.category == null){
+    if(!study.category || typeof study.category == undefined ||
+        study.category == null){
         errors.push({text: "Você precisa definir uma categoria!"});
-    } else if(req.body.category.length < 2){
+    } else if(study.category.length < 2){
         errors.push({text: "Escreva uma categoria mais detalhada. Você consegue!"})
     }
 
-    if(!req.body.content || typeof req.body.content == undefined ||
-        req.body.content == null){
+    if(!study.content || typeof study.content == undefined ||
+        study.content == null){
         errors.push({text: "Você precisa definir um conteúdo!"});
-    } else if(req.body.content.length < 100){
+    } else if(study.content.length < 20){
         errors.push({text: "Escreva um conteúdo mais detalhado. Você consegue!"})
     }
-    
-    if(errors.length > 0){
-        if(flag === '1'){
-            res.render('study/details', {errors: errors})
-        } else {
-            res.render('study/edit', {errors: errors})
-        }
-        
-    } else {
-        const newStudy = {
-            title: req.body.title,
-            desc: req.body.description,
-            content: req.body.content,
-            category: req.body.category,
-        }
 
+    return errors;
+}
+
+router.post('/save', (req, res) => {
+    const newStudy = {
+        title: req.body.title,
+        desc: req.body.description,
+        content: req.body.content,
+        category: req.body.category,
+    }
+    const errors = validate(newStudy);
+    if(errors.length > 0){
+        res.render('study/details', {errors: errors})
+    } else {
         new Study(newStudy).save().then(() => {
             req.flash('success', 'O tópico de estudo foi criado!');
             res.redirect('/');
@@ -105,6 +79,34 @@ router.post('/validate/:flag', (req, res) => {
             res.redirect('/');
         });
     }
+});
+
+router.get('/edit/:id', (req, res) => {
+    Study.findOne({_id: req.params.id}).lean().then((study) => {
+        res.render('study/edit', {study: study})
+    }).catch((err) => {
+        req.flash("error_msg", "Houve um erro ao carregar o formulário de edição")
+        res.redirect("/")
+    })
+});
+
+router.post('/edit', (req, res) => {
+    Study.findOne({_id: req.body.id}).then((study) => {
+        let id = req.body.id;
+        study.title = req.body.title;
+        study.desc = req.body.description;
+        study.category = req.body.category;
+        study.content = req.body.content;
+
+        study.save().then(() => {
+            req.flash('success', 'Tópico atualizado!');
+            res.redirect('/')
+            //res.redirect('/readMore/' + id)
+        }).catch((err) => {
+            req.flash('error', 'Não foi possível atualizar o tópico.')
+            res.redirect('/')
+        })
+    })
 });
 
 module.exports = router;

@@ -2,8 +2,9 @@
     <div class="alert alert-danger">{{text}}</div>
 {{/each}}
 <h3 class="text-center mb-4">Atualizar tópico de estudo</h3>
-<form class="mt-4" method="post" action="/study/validate/2">
+<form class="mt-4" method="post" action="/study/edit">
   <div class="form-group row text-center">
+    <input type="hidden" value="{{study._id}}" name="id">
     <label for="title" class="col-sm-2 col-form-label">Título:</label>
     <div class="col-sm-8">
       <input type="text" class="form-control" placeholder="Título do estudo" 
