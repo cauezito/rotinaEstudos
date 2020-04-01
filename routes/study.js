@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/readMore/:id', (req, res) => {
-    Study.findOne({_id: req.params.id}).then((study) => {
+    Study.findOne({_id: req.params.id}).lean().then((study) => {
         res.render('study/read', {study: study})
     }).catch((err) => {
         req.flash('error', 'O tópico de estudo não foi encontrado!')
@@ -18,7 +18,42 @@ router.get('/readMore/:id', (req, res) => {
     })   
 });
 
-router.post('/validate', (req, res) => {
+router.get('/delete/:id', (req, res) => {
+    Study.remove({_id: req.params.id}).then(() => {
+        req.flash('success', 'O tópico de estudo foi apagado!');
+        res.redirect('/');
+    }).catch((err) => {
+        req.flash('error', 'Não foi possível apagar o tópico de estudo.');
+        res.redirect('/');
+    })
+});
+
+router.get('/edit/:id/', (req, res) => {
+    Study.findOne({_id: req.params.id}).lean().then((study) => {
+            res.render('study/edit' , {study: study});
+        }).catch((err) => {
+            req.flash('error', 'Não será possível atualizar o tópico');
+        })
+});
+
+router.post('/edit/:id/', (req, res) => {
+    Study.findOne({_id: req.params.id}).then((study) => {
+        study.title = req.body.title.value;
+        study.desc = req.body.subtitle.value;
+        study.content = req.body.content.value;
+        study.save().then(() => {
+            req.flash('success', 'O tópico foi atualizado!');
+            res.redirect('/');
+        }).catch((err) => {
+            req.flash('error', 'Não foi possível atualizar o tópico');
+        })
+    }).catch((err) => {
+        req.flash('error', 'Não foi possível atualizar o tópico');
+        res.redirect('/');
+    })
+});
+
+router.post('/validate/:flag', (req, res) => {
     var errors = [];
 
     if(!req.body.title || typeof req.body.title == undefined || req.body.title == null){
@@ -48,7 +83,12 @@ router.post('/validate', (req, res) => {
     }
     
     if(errors.length > 0){
-        res.render('study/details', {errors: errors})
+        if(flag === '1'){
+            res.render('study/details', {errors: errors})
+        } else {
+            res.render('study/edit', {errors: errors})
+        }
+        
     } else {
         const newStudy = {
             title: req.body.title,

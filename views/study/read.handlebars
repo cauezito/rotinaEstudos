@@ -1,7 +1,26 @@
-{{#each study}}
-<h1 class="display-3">{{title}}</h1>
-{{desc}}
+<div class="row">
+    <div class="col-6 d-flex justify-content-start">
+        <a href='/'>
+            <button type="button" class="btn btn-light">É o bastante. Quero voltar!</button>
+        </a>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+        <a href='/study/edit/{{study._id}}'>
+    <button type="button" class="btn btn-light">Alterar tópico</button>
+        </a>
+    </div>
+</div>
 
-{{content}}
-{{/each}}
-<hr>
+<div class="title">
+    <h1 class="display-4 info" name="title" contenteditable="true" value="{{study.title}}"
+    >{{study.title}}</h1>
+    <hr>
+</div>
+<div class="subtitle">
+    <p contenteditable="true" class="info" name="subtitle" value="{{study.desc}}"
+    >{{study.desc}}</p>
+</div>
+<div class="content" contenteditable="true">
+    <p contenteditable="true" class="info" name="content" value="{{study.content}}">
+        {{study.content}}</p>
+</div>
