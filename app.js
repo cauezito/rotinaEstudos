@@ -9,6 +9,7 @@ const routeStudy = require('./routes/study');
 require('./models/Study')
 const Study = mongoose.model("study");
 const app = express();
+const dateFormat = require('./util/dateFormat');
 
 app.use(session({
     secret: "nodejs",
@@ -40,7 +41,8 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
     Study.find().lean().then((studies) => {
-        res.render('index', /*{date: Date.now}*/ {studies: studies})
+        let date = new Date;
+        res.render('index', {studies: studies, date: dateFormat(date)})
     }).catch((err) => {
         req.flash("error", "Houve um erro ao carregar os tópicos de estudo.")
     })    
