@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 require('../models/Study');
 const Study = mongoose.model('study');
-
+const valida = require('../util/validators');
 
 router.get('/', (req, res) => {
     res.render('study/details');
@@ -28,37 +28,6 @@ router.get('/delete/:id', (req, res) => {
     })
 });
 
-function validate(study){
-    var errors = [];
-
-    if(!study.title || typeof study.title == undefined || study.title == null){
-        errors.push({text: "Você precisa definir um título!"});
-    } else if(study.title.length < 8){
-        errors.push({text: "Escreva um título mais detalhado. Você consegue!"})
-    }
-
-    if(study.description){
-        if(study.description.length < 10){
-            errors.push({text: "Capriche na descrição! Ela está muito curta."});
-        }        
-    } 
-
-    if(!study.category || typeof study.category == undefined ||
-        study.category == null){
-        errors.push({text: "Você precisa definir uma categoria!"});
-    } else if(study.category.length < 2){
-        errors.push({text: "Escreva uma categoria mais detalhada. Você consegue!"})
-    }
-
-    if(!study.content || typeof study.content == undefined ||
-        study.content == null){
-        errors.push({text: "Você precisa definir um conteúdo!"});
-    } else if(study.content.length < 20){
-        errors.push({text: "Escreva um conteúdo mais detalhado. Você consegue!"})
-    }
-
-    return errors;
-}
 
 router.post('/save', (req, res) => {
     const newStudy = {
@@ -67,7 +36,7 @@ router.post('/save', (req, res) => {
         content: req.body.content,
         category: req.body.category,
     }
-    const errors = validate(newStudy);
+    const errors = valida(newStudy);
     if(errors.length > 0){
         res.render('study/details', {errors: errors})
     } else {

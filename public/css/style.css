@@ -16,4 +16,11 @@ body{
 .content{
     font-size: 16pt;
 }
+.topic{
+    margin-bottom: 50px;
+}
+.btn-details{
+    margin: 20px auto;
+    width: 50%; /* Valor da Largura */
+}
 

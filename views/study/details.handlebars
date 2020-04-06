@@ -1,26 +1,26 @@
 {{#each errors}}
     <div class="alert alert-danger">{{text}}</div>
 {{/each}}
-<h3>Para criar um novo tópico de estudo, é necessário que você forneça algumas informações...</h3>
+<h3 class="topic">Para criar um novo tópico de estudo, é necessário fornecer algumas informações...</h3>
 <form class="mt-3" method="post" action="/study/save">
   <div class="form-group row text-center">
     <label for="title" class="col-sm-2 col-form-label">Título:</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" placeholder="Título do estudo" 
+      <input type="text" class="form-control" placeholder="Insira um título que descreva o tema do seu tópico de estudo." 
         name="title">
     </div>
   </div>
   <div class="form-group row text-center">
     <label for="description" class="col-sm-2 col-form-label">Descrição:</label>
      <div class="col-sm-8">
-      <input type="text" class="form-control" placeholder="Descrição do estudo"
+      <input type="text" class="form-control" placeholder="Uma breve descrição é sempre útil!"
       name="description">
     </div>
   </div>
   <div class="form-group row text-center">
     <label for="category" class="col-sm-2 col-form-label">Categoria:</label>
      <div class="col-sm-8">
-      <input type="text" class="form-control" placeholder="Categoria do estudo"
+      <input type="text" class="form-control" placeholder="A categoria ajuda a não misturar os tópicos."
       name="category">
     </div>
   </div>
@@ -30,8 +30,10 @@
     <textarea class="form-control" name="content" rows="5"></textarea>
     </div>
   </div>
-  <div class="form-group row">
-      <button class="btn btn-success mx-auto" type="submit">Criar</button>
-      <button class="btn btn-warning mx-auto" type="reset">Limpar</button>
+  <div class="col-12">
+    <div class="form-group row">
+        <button class="btn btn-success btn-details col-2" type="submit">Criar</button>
+        <button class="btn btn-warning btn-details col-2" type="reset">Limpar</button>
+    </div>
   </div>
 </form>
