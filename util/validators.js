@@ -1,4 +1,5 @@
-module.exports = (study) => {
+module.exports = {
+    newStudy(study){
     var errors = [];
 
     if(!study.title || typeof study.title == undefined || study.title == null){
@@ -28,4 +29,28 @@ module.exports = (study) => {
     }
 
     return errors;
+},
+newCategory(category){
+    var errors = [];
+    var name = category.name;
+    var slug = category.slug;
+
+    if(!name || typeof name == undefined || name == null){
+        erros.push({text: "Nome inválido!"})
+    }
+
+    if(!slug || typeof slug == undefined || slug == null){
+        errors.push({text: "Slug inválido!"})
+    }
+
+    if(name.length < 4){
+        errors.push({text: "O nome da categoria é muito pequeno!"})
+    }
+
+    if(slug.length < 6){
+        errors.push({text: "O slug da categoria é muito pequeno!"})
+    }
+    
+    return errors;
+}
 }

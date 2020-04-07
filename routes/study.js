@@ -3,6 +3,8 @@ const router = express.Router();
 const mongoose = require('mongoose');
 require('../models/Study');
 const Study = mongoose.model('study');
+require('../models/Category');
+const Category = mongoose.model('categories');
 const valida = require('../util/validators');
 
 router.get('/', (req, res) => {
@@ -28,7 +30,6 @@ router.get('/delete/:id', (req, res) => {
     })
 });
 
-
 router.post('/save', (req, res) => {
     const newStudy = {
         title: req.body.title,
@@ -36,7 +37,8 @@ router.post('/save', (req, res) => {
         content: req.body.content,
         category: req.body.category,
     }
-    const errors = valida(newStudy);
+
+    const errors = valida.newStudy(newStudy);
     if(errors.length > 0){
         res.render('study/details', {errors: errors})
     } else {
@@ -77,5 +79,33 @@ router.post('/edit', (req, res) => {
         })
     })
 });
+
+router.get('/config', (req, res) => {
+    Category.find().lean().then((categories) => {
+        res.render('study/config', {categories: categories})
+    }).catch((err) => {
+        req.flash("error" , "Houve um erro ao listar as categorias ");
+        res.redirect("/study/config");
+    })    
+});
+
+router.post('/config/newCategory', (req, res) => {
+    const newCategory = {
+        name: req.body.name,
+        slug: req.body.slug,
+    }
+    const errors = valida.newCategory(newCategory);
+    if(errors.length > 0){
+        res.render('study/config', {errors: errors})
+    } else {
+        new Category(newCategory).save().then(() => {
+            req.flash('success', 'A categoria de estudo foi criada!');
+            res.redirect('/study/config');
+        }).catch((err) => {
+            req.flash('error', 'A categoria de estudo não pôde ser criada.');
+            res.redirect('/study/config');
+        });
+    }
+})
 
 module.exports = router;
