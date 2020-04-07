@@ -106,6 +106,16 @@ router.post('/config/newCategory', (req, res) => {
             res.redirect('/study/config');
         });
     }
-})
+});
+
+router.get('/config/remove/:id', (req, res) => {
+    Category.remove({_id: req.params.id}).then(() => {
+        req.flash("success" , "A categoria foi deletada!")
+        res.redirect('/study/config')
+    }).catch((err) => {
+        req.flash("error", "A categoria não pôde ser excluída!")
+        res.redirect('/study/config')
+    })
+});
 
 module.exports = router;

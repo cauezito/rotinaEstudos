@@ -15,7 +15,11 @@
     <div class="col-12">
         <h4>Categorias já cadastradas:</h4>
         {{#each categories}}
-            <p>{{name}} - {{slug}}</p>
+            <p>{{name}} 
+                <a href="/study/config/remove/{{_id}}">
+                    <button class="btn btn-danger">apagar</button>
+                </a>
+            </p>            
         {{/each}}
     </div>
 </div>
