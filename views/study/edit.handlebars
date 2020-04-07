@@ -1,7 +1,9 @@
 {{#each errors}}
     <div class="alert alert-danger">{{text}}</div>
 {{/each}}
-<h3 class="text-center mb-4">Atualizar tópico de estudo</h3>
+<div class="card">
+  <div class="card-body">
+    <h3 class="text-center mb-4">Atualizar tópico de estudo</h3>
 <form class="mt-4" method="post" action="/study/edit">
   <div class="form-group row text-center">
     <input type="hidden" value="{{study._id}}" name="id">
@@ -36,3 +38,5 @@
       <button class="btn btn-warning mx-auto" type="reset">Recomeçar</button>
   </div>
 </form>
+  </div>
+</div>

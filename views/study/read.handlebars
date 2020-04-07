@@ -1,4 +1,6 @@
-<div class="row">
+<div class="card">
+    <div class="card-body">
+        <div class="row">
     <div class="col-6 d-flex justify-content-start">
         <a href='/'>
             <button type="button" class="btn btn-light">É o bastante. Quero voltar!</button>
@@ -12,15 +14,19 @@
 </div>
 
 <div class="title">
-    <h1 class="display-4 info" name="title" contenteditable="true" value="{{study.title}}"
+    <h1 class="display-5 info" name="title" value="{{study.title}}"
     >{{study.title}}</h1>
     <hr>
 </div>
 <div class="subtitle">
-    <p contenteditable="true" class="info" name="subtitle" value="{{study.desc}}"
-    >{{study.desc}}</p>
+    <p class="info" name="subtitle" value="{{study.desc}}">
+        {{study.desc}}
+    </p>
 </div>
-<div class="content" contenteditable="true">
-    <p contenteditable="true" class="info" name="content" value="{{study.content}}">
-        {{study.content}}</p>
+<div class="content">
+    <p class="info" name="content" value="{{study.content}}">
+        {{study.content}}
+    </p>
+</div>
+    </div>
 </div>
