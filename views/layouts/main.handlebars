@@ -5,42 +5,27 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-     <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <title>Rotina de estudos</title>
 </head>
-<body onload="teste();">
+<body>
+    <div class="">
+        {{>_msg}}        
+    </div>    
     {{>_navbar}}
-    <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light d-block d-sm-none">
-                <div class="container-fluid">
-                    <div class="col-sm-2">
-                        <p>Hoje é {{date}}. O que faremos?</p>
-                    <button type="button" id="sidebarCollapse" 
-                    class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                        <span>Menu</span>   
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto"
-                    type="button" data-toggle="collapse" 
-                    data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" 
-                    aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
-                </div>
-            </nav>
+    <div id="content">            
+        <button type="button" id="sidebarCollapse" 
+        class="btn btn-info">
+        <i class="fa fa-align-justify"></i>
+        </button>              
+            
         {{{body}}}          
-        </div>
-    </div>
-        {{>_msg}}
-        
     </div>    
 </body>
 <script src="/js/jquery.js"></script>
 <script src="/js/popper.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/script.js"></script>
+
 </html>
 

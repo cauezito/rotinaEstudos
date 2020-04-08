@@ -9,6 +9,7 @@ body{
 .title{
     text-align: center;
     margin-top: 40px;
+    
 }
 .display-4{
     color: white;
@@ -80,11 +81,13 @@ a:focus {
     max-width: 250px;
     background-color: #f4eeff;
     transition: all 0.5s;
+    opacity: 0.90;
+    margin-left: -250px;
 }
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #8288ce;
+    background: #0b0b0d;
     color: white;
 }
 
@@ -179,7 +182,7 @@ a.article:hover {
         margin-left: 0;
     }
     #sidebarCollapse span {
-        display: none;
+        display: block;
     }
 }
 
