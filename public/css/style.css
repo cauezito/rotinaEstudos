@@ -1,8 +1,20 @@
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 body{
-    background-image: url("../img/background-space.jpg");
-    font-family: 'Poppins', sans-serif;
+    background-image: url("../img/space.jpg");  
+    font-family: Arial, Helvetica, sans-serif;      
 }
+.continuarEstudo, .apagarEstudo{
+    margin-right: 20px;
+    font-weight: bold;
+}
+.continuarEstudo:hover, .apagarEstudo:hover{
+    padding: 10px;
+    background-color: black;
+    color: white;
+    margin-right: 10px;
+}
+
 .options{
     text-align: center;
 }
@@ -13,6 +25,10 @@ body{
 }
 .display-4{
     color: white;
+    font-family: 'Roboto', sans-serif;
+}
+.info{
+    font-size: 20pt;
 }
 .subtitle{
     font-size: 14pt;
@@ -21,6 +37,7 @@ body{
 }
 .content{
     font-size: 16pt;
+    color: black;
 }
 .topic{
     margin-bottom: 50px;
@@ -85,6 +102,11 @@ a:focus {
     margin-left: -250px;
 }
 
+#sidebarCollapse{
+    background-color: black;
+    border-color: white;
+}
+
 #sidebar .sidebar-header {
     padding: 20px;
     background: #0b0b0d;
@@ -134,18 +156,6 @@ ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
     background: #6d7fcc;
-}
-
-ul.CTAs {
-    padding: 20px;
-}
-
-ul.CTAs a {
-    text-align: center;
-    font-size: 0.9em !important;
-    display: block;
-    border-radius: 5px;
-    margin-bottom: 5px;
 }
 
 a.download {
