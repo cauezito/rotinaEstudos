@@ -8,7 +8,12 @@ const Category = mongoose.model('categories');
 const valida = require('../util/validators');
 
 router.get('/', (req, res) => {
-    res.render('study/details');
+    Category.find().lean().then((categories) => {
+        res.render('study/details', {categories: categories})
+    }).catch((err) => {
+        req.flash('error' , 'Houve um erro ao listar as categorias');
+        res.redirect('/study/config');
+    })    
 });
 
 router.get('/readMore/:id', (req, res) => {
@@ -56,7 +61,7 @@ router.get('/edit/:id', (req, res) => {
     Study.findOne({_id: req.params.id}).lean().then((study) => {
         res.render('study/edit', {study: study})
     }).catch((err) => {
-        req.flash("error_msg", "Houve um erro ao carregar o formulário de edição")
+        req.flash('error', 'Houve um erro ao carregar o formulário de edição')
         res.redirect("/")
     })
 });
@@ -84,7 +89,7 @@ router.get('/config', (req, res) => {
     Category.find().lean().then((categories) => {
         res.render('study/config', {categories: categories})
     }).catch((err) => {
-        req.flash("error" , "Houve um erro ao listar as categorias ");
+        req.flash('error' , 'Houve um erro ao listar as categorias');
         res.redirect("/study/config");
     })    
 });
@@ -110,10 +115,10 @@ router.post('/config/newCategory', (req, res) => {
 
 router.get('/config/remove/:id', (req, res) => {
     Category.remove({_id: req.params.id}).then(() => {
-        req.flash("success" , "A categoria foi deletada!")
+        req.flash('success' , 'A categoria foi deletada!')
         res.redirect('/study/config')
     }).catch((err) => {
-        req.flash("error", "A categoria não pôde ser excluída!")
+        req.flash('error', 'A categoria não pôde ser excluída!')
         res.redirect('/study/config')
     })
 });
