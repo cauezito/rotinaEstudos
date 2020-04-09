@@ -10,25 +10,23 @@
 <div class="row">
 {{#each studies}}
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" 
-  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" 
+  aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Exclusão de tópico</h5>
+        <h5 class="modal-title" id="modalLongTitle">Exclusão de tópico</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Tem certeza de que quer excluir esse tópico de estudo?
+        Tem certeza de que deseja excluir esse tópico de estudo?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Deixa pra lá!</button>
-        
-       <a class="apagarEstudo" 
-    href="/study/delete/{{_id}}" class="card-link"> 
-    <button type="button" class="btn btn-primary">Quero apagar!</button></a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Deixa pra lá.</button>
+        <a href="/study/delete/{{_id}}"> 
+        <button type="button" class="btn btn-primary">Quero apagar!</button></a>
       </div>
     </div>
   </div>
@@ -40,13 +38,10 @@
     <h5 class="card-title">{{title}}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{categories}}</h6>
     <p class="card-text">{{desc}}</p>
-    <a class="continuarEstudo"
-    href="/study/readMore/{{_id}}" class="card-link">Continuar estudo</a>
-    
-     <a class="apagarEstudo" data-toggle="modal" 
-    data-target="#exampleModalCenter">
-    Apagar
-  </a>
+    <a class="continuarEstudo" href="/study/readMore/{{_id}}" 
+    class="card-link">Continuar estudo</a>    
+    <a href="#" class="apagarEstudo" data-toggle="modal" 
+    data-target="#modal">Apagar</a>
   </div>
 </div>
 </div>

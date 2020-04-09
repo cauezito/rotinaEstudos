@@ -3,7 +3,11 @@
         <nav id="sidebar">
             <div class="sidebar-header text-center">
                 <a href="/">
+                {{#if date}}
                     <h5>Hoje é {{date}}. O que faremos?</h5>
+                    {{else}}
+                    <h5>Home page</h5>
+                {{/if}}
                 </a>
             </div>
             <ul class="list-unstyled components">
