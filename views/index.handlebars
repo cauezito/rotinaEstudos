@@ -3,7 +3,12 @@
 {{/each}}
 
 <div class="mt-5 mx-auto mb-5">
-  <h1 class="display-4 text-center">Meus tópicos</h1>
+  {{#if categories}}
+    <h1 class="display-4 text-center">Exibindo tudo</h1>
+  {{else}}
+  <h1 class="display-4 text-center">Exibindo sobre {{name}}</h1>
+
+  {{/if}}
 </div>
 
 <div class="row col-12">
@@ -31,7 +36,7 @@
   </div>
 </div>
 <!-- /modal -->
-<div class="col-sm-6 col-md-4 mb-3">
+<div class="col-sm-12 col-md-4 mb-3">
   <div class="card" style="">
     <div class="card-body">
       <h5 class="card-title">{{title}}</h5>

@@ -123,4 +123,12 @@ router.get('/config/remove/:id', (req, res) => {
     })
 });
 
+router.get('/showCategory/:id', (req, res) => {
+    Study.find({category: req.params.id}).lean().then((studies) => {
+        res.render('index', {studies:studies});
+    }).catch((err) => {
+        console.log('erro: ' + err)
+    });
+})
+
 module.exports = router;
