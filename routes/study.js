@@ -123,12 +123,13 @@ router.get('/config/remove/:id', (req, res) => {
     })
 });
 
-router.get('/showCategory/:id', (req, res) => {
-    Study.find({category: req.params.id}).lean().then((studies) => {
-        res.render('index', {studies:studies});
-    }).catch((err) => {
-        console.log('erro: ' + err)
-    });
+router.get('/showCategory/:id/:catName', (req, res) => {
+    Study.find({category: req.params.id}).lean().then((studies) => {  
+        Category.find().lean().then((categories) => { 
+            res.render('index', {studies: studies, categories: categories, 
+                CategoryName: req.params.catName})
+        });
+    })
 })
 
 module.exports = router;

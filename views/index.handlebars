@@ -3,12 +3,11 @@
 {{/each}}
 
 <div class="mt-5 mx-auto mb-5">
-  {{#if categories}}
+  {{#if CategoryName}}
+    <h1 class="display-4 text-center">Tópicos sobre {{CategoryName}}</h1>
+    {{else}}
     <h1 class="display-4 text-center">Exibindo tudo</h1>
-  {{else}}
-  <h1 class="display-4 text-center">Exibindo sobre {{name}}</h1>
-
-  {{/if}}
+    {{/if}}
 </div>
 
 <div class="row col-12">
@@ -36,11 +35,12 @@
   </div>
 </div>
 <!-- /modal -->
+
 <div class="col-sm-12 col-md-4 mb-3">
   <div class="card" style="">
     <div class="card-body">
       <h5 class="card-title">{{title}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{categories}}</h6>
+      <h6 class="card-subtitle mb-2 text-muted">{{category.name}}</h6>
       <p class="card-text">{{desc}}</p>
       <a class="continuarEstudo" href="/study/readMore/{{_id}}" 
       class="card-link">Continuar estudo</a>    
@@ -49,6 +49,7 @@
     </div>
   </div>
 </div>
+
 {{/each}}
 </div>
 
