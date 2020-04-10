@@ -96,8 +96,7 @@ router.get('/config', (req, res) => {
 
 router.post('/config/newCategory', (req, res) => {
     const newCategory = {
-        name: req.body.name,
-        slug: req.body.slug,
+        name: req.body.name
     }
     const errors = valida.newCategory(newCategory);
     if(errors.length > 0){

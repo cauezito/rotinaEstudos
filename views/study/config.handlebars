@@ -1,25 +1,42 @@
 {{#each errors}}
     <div class="alert alert-danger">{{text}}</div>
 {{/each}}
-<form class="mt-3" method="post" action="/study/config/newCategory">  
-  <div class="col-xs-12 col-md-7">
-      <h4>Nova categoria de estudo:</h4>
-      <label for="name">Nome:</label>
-      <input type="text" name="name">
-      <label for="name">Slug:</label>
-      <input type="text" name="slug">
-      <button class="btn btn-success btn-sm" type="submit">Criar</button>
-  </div>
-</form>
-<div class="row">
-    <div class="col-12">
-        <h4>Categorias já cadastradas:</h4>
-        {{#each categories}}
-            <p>{{name}} 
-                <a href="/study/config/remove/{{_id}}">
-                    <button class="btn btn-danger">apagar</button>
-                </a>
-            </p>            
-        {{/each}}
+
+<div class="card mx-auto col-xs-12 col-sm-12 col-md-10">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-5 col-md-3">
+                <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-categories" data-toggle="list" 
+                href="#categories" role="tab" aria-controls="categories">Categorias</a>
+                </div>
+            </div>
+            <div class="col-sm-7 col-7">
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="categories" role="tabpanel" 
+                    aria-labelledby="list-categories">
+                        <form class="mt-3" method="post" action="/study/config/newCategory">  
+                            <div class="form-group">
+                                <h5 class="text-center">Nova categoria:</h5>
+                                <div class="form-row">                
+                                <label for="name">Nome:</label>
+                                <input type="text" name="name" class="form-control mb-3 col-4">
+                                </div>
+                                <button class="btn btn-success" type="submit">Criar</button>
+                            </div>
+                        </form>
+                        <hr>
+                        <h5>Cadastradas:</h5>
+                        {{#each categories}}
+                            <p>{{name}} 
+                                <a href="/study/config/remove/{{_id}}">
+                                    <i class="fa fa-times ml-2" aria-hidden="true" style="color: red"></i>
+                                </a>
+                            </p>            
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
