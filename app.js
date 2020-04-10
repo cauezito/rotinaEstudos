@@ -8,6 +8,8 @@ const session = require('express-session');
 const routeStudy = require('./routes/study');
 require('./models/Study')
 const Study = mongoose.model("study");
+require('./models/Category')
+const Category = mongoose.model("categories");
 const app = express();
 const dateFormat = require('./util/dateFormat');
 
@@ -41,11 +43,11 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
     Study.find().lean().then((studies) => {
+        Category.find().lean().then((categories) => { 
         let date = new Date;
-        res.render('index', {studies: studies, date: dateFormat(date)})
-    }).catch((err) => {
-        req.flash("error", "Houve um erro ao carregar os tópicos de estudo.")
-    })    
+        res.render('index', {studies: studies, date: dateFormat(date), categories: categories})
+    });
+})
 });
 
 app.use('/study', routeStudy);

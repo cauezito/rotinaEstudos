@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed&display=swap');
 body{
     background-image: url("../img/spaces.jpg");  
-    font-family: Arial, Helvetica, sans-serif;      
+    font-family: 'Open Sans Condensed', sans-serif;   
 }
 .continuarEstudo, .apagarEstudo{
     margin-right: 20px;
@@ -47,7 +48,7 @@ body{
     width: 50%; /* Valor da Largura */
 }
 p {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif; 
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -96,7 +97,7 @@ a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background-color: #f4eeff;
+    background-color: #fbf4f9;
     transition: all 0.5s;
     opacity: 0.90;
     margin-left: -250px;
@@ -109,7 +110,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #0b0b0d;
+    background: #424874;
     color: white;
 }
 
@@ -131,13 +132,13 @@ a:focus {
 
 #sidebar ul li a:hover {
     color: white;
-    background: #a4aaec;
+    background: #afafaf;
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #fff;
-    background: #c6cbef;
+    color: black;
+    background: #d6d6d6;
 }
 
 a[data-toggle="collapse"] {
@@ -155,7 +156,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #dadddf;
 }
 
 a.download {

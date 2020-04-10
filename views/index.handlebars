@@ -1,13 +1,12 @@
 {{#each errors}}
 <div class="alert alert-danger">{{text}}</div>
 {{/each}}
-<h1 class="display-4 text-center">
-</h1>
+
 <div class="mt-5 mx-auto mb-5">
   <h1 class="display-4 text-center">Meus tópicos</h1>
 </div>
 
-<div class="row">
+<div class="row col-12">
 {{#each studies}}
 <!-- Modal -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" 
@@ -24,7 +23,7 @@
         Tem certeza de que deseja excluir esse tópico de estudo?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Deixa pra lá.</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Deixa pra lá</button>
         <a href="/study/delete/{{_id}}"> 
         <button type="button" class="btn btn-primary">Quero apagar!</button></a>
       </div>
@@ -33,17 +32,18 @@
 </div>
 <!-- /modal -->
 <div class="col-sm-6 col-md-4 mb-3">
-<div class="card" style="">
-  <div class="card-body">
-    <h5 class="card-title">{{title}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{categories}}</h6>
-    <p class="card-text">{{desc}}</p>
-    <a class="continuarEstudo" href="/study/readMore/{{_id}}" 
-    class="card-link">Continuar estudo</a>    
-    <a href="#" class="apagarEstudo" data-toggle="modal" 
-    data-target="#modal">Apagar</a>
+  <div class="card" style="">
+    <div class="card-body">
+      <h5 class="card-title">{{title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{categories}}</h6>
+      <p class="card-text">{{desc}}</p>
+      <a class="continuarEstudo" href="/study/readMore/{{_id}}" 
+      class="card-link">Continuar estudo</a>    
+      <a href="#" class="apagarEstudo" data-toggle="modal" 
+      data-target="#modal">Apagar</a>
+    </div>
   </div>
-</div>
 </div>
 {{/each}}
 </div>
+
